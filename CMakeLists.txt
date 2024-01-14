@@ -5,6 +5,7 @@ cmake_minimum_required(VERSION 3.16)
 set(EXTRA_COMPONENT_DIRS    
     nerdy_wifi
     nerdy_udp_client
+    nerdy_udp_server
     nerdy_mac_address
 )
 

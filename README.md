@@ -1,23 +1,10 @@
 
 
+# Wi-Fi connection configuration
 
-# Wi-Fi
-
-Copy 
-
-```bash
-nerdy_wifi_config.c.example
-```
-
-to
-
-```bash
-nerdy_wifi_config.c
-```
-
-and paste your Wi-Fi login and password:
-
+1. Copy `nerdy_wi_fi_config.c.example` to `nerdy_wi_fi_config.c`
+2. Replace `SSID_NAME` and `SSID_PASSWORD` with your Wi-Fi credentials:
 ```c
-#define WIFI_SSID "SSID_NAME" // SET YOUR WI-FI ACCESS POINT NAME HERE
-#define WIFI_PWD "SSID_PASSEWORD" // SET YOUR WI-FI PASSWORD HERE
+#define WIFI_SSID "Your_access_point_name_should_be_here" // SET YOUR WI-FI ACCESS POINT NAME HERE
+#define WIFI_PWD "Your_access_point_passwoed_should_be_here" // SET YOUR WI-FI PASSWORD HERE
 ```

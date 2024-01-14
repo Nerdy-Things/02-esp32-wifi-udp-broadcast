@@ -31,6 +31,9 @@ void nerdy_wifi_ip_address_cleat()
     }
 }
 
+/**
+ * parse IP address to char* and create a broadcast IP address for current subnet
+*/
 void nerdy_wifi_ip_address_save(esp_ip4_addr_t ip) 
 {
     int ipSize = 16;

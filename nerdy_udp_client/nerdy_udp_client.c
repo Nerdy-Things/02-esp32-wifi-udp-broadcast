@@ -15,8 +15,15 @@
 
 static const char *TAG = "UDP";
 
+/**
+ * Sends a message via UDP 
+ * @param id - target IP address. Could be a 1-1 (192.168.1.2), could be a broadcast 192.168.1.255
+ * @param port - target port. 0-65000
+ * @param message - message to be sent. Any format. Could be plain text, could be JSON string "{\"text\":\"awesome message\"}"
+*/
 void nerdy_udp_client_send_message(char * ip, int port, char * message)
 {
+    // Set up parameters
     char rx_buffer[128];
 
     char host_ip[strlen(ip)];
@@ -46,6 +53,7 @@ void nerdy_udp_client_send_message(char * ip, int port, char * message)
 
     ESP_LOGI(TAG, "Socket created, sending to %s:%d", ip, port);
 
+    // Send message
     int err = sendto(sock, message, strlen(message), 0, (struct sockaddr *)&dest_addr, sizeof(dest_addr));
     if (err < 0) {
         ESP_LOGE(TAG, "Error occurred during sending: errno %d", errno);
@@ -53,6 +61,7 @@ void nerdy_udp_client_send_message(char * ip, int port, char * message)
         ESP_LOGI(TAG, "Message sent: %s", message);
     }
 
+    // Close socket
     if (sock != -1) {
         shutdown(sock, 0);
         close(sock);
