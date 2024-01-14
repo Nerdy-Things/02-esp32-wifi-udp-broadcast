@@ -8,7 +8,6 @@
 
 char * nerdy_get_mac_address(void)
 {
-    //Get the base MAC address from different sources
     uint8_t base_mac_addr[6] = {0};
     esp_err_t ret = ESP_OK;
     char * mac_address;
