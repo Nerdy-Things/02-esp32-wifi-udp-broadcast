@@ -1,0 +1,3 @@
+dependencies:
+  espressif/sh2lib: "^1.0.0"
+  
