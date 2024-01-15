@@ -16,6 +16,30 @@
 
 static const char *TAG = "MAIN";
 
+
+/**
+ * UDP message sending immitation. The messages will be sent in an infinite loop with UPDATE_INTERVAL interval.
+*/
+void immitate_udp_message_sending() {
+    int message_number = 1;
+    while (1)
+    {
+        vTaskDelay(pdMS_TO_TICKS(UPDATE_INTERVAL));
+        if (nerdy_wifi_ip_broadcast != NULL) 
+        {
+            char *message;
+            // Build a message, increment message_number 
+            asprintf(&message, "{\"mac_address\": \"%s\" , \"message_number\": \"%d\"}\n", nerdy_get_mac_address(), message_number++);
+            // Send message
+            nerdy_udp_client_send_message(nerdy_wifi_ip_broadcast, UDP_PORT_CLIENT, message);
+            // Release message from memory
+            free(message);
+            // Log to the console
+            ESP_LOGI(TAG, "Message is sent to %s %d", nerdy_wifi_ip_broadcast, UDP_PORT_CLIENT);
+        }
+    }
+}
+
 void app_main(void)
 {
     // Initialize NVS
@@ -43,27 +67,4 @@ void app_main(void)
     * Don't forget to change 32411 to your port, if you change config.
     **/
     // nerdy_udp_server_start(UDP_PORT_SERVER);
-}
-
-/**
- * UDP message sending immitation. The messages will be sent in an infinite loop with UPDATE_INTERVAL interval.
-*/
-void immitate_udp_message_sending() {
-    int message_number = 1;
-    while (1)
-    {
-        vTaskDelay(pdMS_TO_TICKS(UPDATE_INTERVAL));
-        if (nerdy_wifi_ip_broadcast != NULL) 
-        {
-            char *message;
-            // Build a message, increment message_number 
-            asprintf(&message, "{\"mac_address\": \"%s\" , \"message_number\": \"%d\"}\n", nerdy_get_mac_address(), message_number++);
-            // Send message
-            nerdy_udp_client_send_message(nerdy_wifi_ip_broadcast, UDP_PORT_CLIENT, message);
-            // Release message from memory
-            free(message);
-            // Log to the console
-            ESP_LOGI(TAG, "Message is sent to %s %d", nerdy_wifi_ip_broadcast, UDP_PORT_CLIENT);
-        }
-    }
 }
