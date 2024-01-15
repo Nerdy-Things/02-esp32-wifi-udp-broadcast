@@ -17,7 +17,7 @@ static const char *TAG = "WIFI";
 char * nerdy_wifi_ip_address = NULL;
 char * nerdy_wifi_ip_broadcast = NULL;
 
-void nerdy_wifi_ip_address_cleat() 
+void nerdy_wifi_ip_address_clear() 
 {
     if (nerdy_wifi_ip_address != NULL) 
     {
@@ -49,12 +49,12 @@ static void event_handler(void* arg, esp_event_base_t event_base,
     ESP_LOGI(TAG, "Received event: %s %" PRId32 , event_base, event_id);
     if (event_base == WIFI_EVENT && event_id == WIFI_EVENT_STA_START) {
         esp_wifi_connect();
-        nerdy_wifi_ip_address_cleat();
+        nerdy_wifi_ip_address_clear();
     } else if (event_base == WIFI_EVENT && event_id == WIFI_EVENT_STA_DISCONNECTED) {
         esp_wifi_connect();
-        nerdy_wifi_ip_address_cleat();
+        nerdy_wifi_ip_address_clear();
     } else if (event_base == IP_EVENT && event_id == IP_EVENT_STA_GOT_IP) {
-        nerdy_wifi_ip_address_cleat();
+        nerdy_wifi_ip_address_clear();
         ip_event_got_ip_t* event = (ip_event_got_ip_t*) event_data;
         nerdy_wifi_ip_address_save(event->ip_info.ip);
         ESP_LOGI(TAG, "got ip: %s broadcast: %s", nerdy_wifi_ip_address, nerdy_wifi_ip_broadcast);
