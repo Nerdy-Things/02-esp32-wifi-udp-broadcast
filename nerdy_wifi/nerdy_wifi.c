@@ -14,7 +14,9 @@
 
 static const char *TAG = "WIFI";
 
+// 192.168.1.72
 char * nerdy_wifi_ip_address = NULL;
+// 192.168.1.255 [0-254]
 char * nerdy_wifi_ip_broadcast = NULL;
 
 void nerdy_wifi_ip_address_clear() 

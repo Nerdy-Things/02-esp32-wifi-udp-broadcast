@@ -1,4 +1,11 @@
 
+# Video instruction
+
+[![Video instruction](/images/02_thumbnail.png)](https://youtu.be/bdTmS5Z1Oo4)
+
+# Medium article
+
+[Medium.com](https://medium.com/@gektor650/esp-idf-esp32-udp-broadcasts-messages-through-the-wi-fi-4a7f3d75d8ea)
 
 # Wi-Fi connection configuration
 
