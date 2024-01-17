@@ -59,12 +59,12 @@ void app_main(void)
     /**
      * We don't have sensors so we will send a mock message
     */
-    // immitate_udp_message_sending();
+    immitate_udp_message_sending();
 
     /** Start UDP server (listen to messages)
     * For testing use 
     * socat - UDP-DATAGRAM:255.255.255.255:32411,broadcast 
     * Don't forget to change 32411 to your port, if you change config.
     **/
-    nerdy_udp_server_start(UDP_PORT_SERVER);
+    // nerdy_udp_server_start(UDP_PORT_SERVER);
 }
